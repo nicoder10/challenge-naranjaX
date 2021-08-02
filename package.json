@@ -1,0 +1,27 @@
+{
+  "name": "challenge-naranjax",
+  "version": "1.0.0",
+  "description": "Final challenge node.js academy",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd server && nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicoder10/challenge-naranjaX.git"
+  },
+  "author": "Nicolas Martino",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicoder10/challenge-naranjaX/issues"
+  },
+  "homepage": "https://github.com/nicoder10/challenge-naranjaX#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^6.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.5"
+  }
+}

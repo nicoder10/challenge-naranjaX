@@ -21,10 +21,11 @@ router.post('/', (req, res) => {
         img: req.body.img
     })
     
-    newCity.save()
-        .then((city) => res.send(city))
-        .catch((err) => res.status(500).send('Internal server error'));
-        
+    const exists = newCity.findOne({ name: name.toLowerCase() });
+    if (exists) res.json({ message: 'This city already exists in database'})
+    else newCity.save()
+            .then((city) => res.send(city))
+            .catch((err) => res.status(500).send('Internal server error'));   
 });
 
 

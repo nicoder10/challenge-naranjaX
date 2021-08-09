@@ -4,7 +4,7 @@ const cityRepository = require('../../../repositories/cityRepository');
 const getCities = async (req, res) => {
     try {
         
-        const citiesInDB = await cityRepository.getAll();
+        const data = await cityRepository.getAll();
         const count = await cityRepository.count();
 
         if(!citiesInDB) {
@@ -13,7 +13,6 @@ const getCities = async (req, res) => {
                 message: 'No cities in database'
             });
         }
-        const data = citiesInDB;
         res.status(200).json({
             ok: true,
             message: 'Cities',
@@ -34,20 +33,23 @@ const getCity = async (req, res) => {
     let id = req.params.id;
 
     try {
-        const city = await cityRepository.getByID(id);
-        if(!city) {
+        const data = await cityRepository.getByID(id);
+        if(!data) {
             return res.status(401).json({
+                ok: false,
                 message: 'No city corresponds to that id'
             });
         }
 
         res.status(200).json({
+            ok: true,
             message: 'City',
-            city: city
+            response: data
         });
 
     } catch(e) {
         res.status(500).json({
+            ok: false,
             message: 'Internal server error',
             error: e
         });
@@ -60,18 +62,21 @@ const getCityByQuery = (req, res) => {
     let name = req.query.name;
 
     try {
-        const city = cityRepository.getCityByName(name);
-        if(!city) {
+        const data = cityRepository.getCityByName(name);
+        if(!data) {
             res.status(401).json({
+                ok: false,
                 message: 'City not found'
             });
         }
         res.status(200).json({
+            ok: true,
             message: 'City',
-            city: city
+            response: data
         });
     } catch(e) {
         res.status.json({
+            ok: false,
             message: 'Internal server error',
             error: e
         });

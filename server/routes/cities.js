@@ -1,32 +1,15 @@
-const express = require('express');
-const router = express.Router();
-const cityModel = require('../models/cityModel');
+const { Router } = require('../controllers/cityController/cityModule');
+const { get, create } = require('../controllers/cityController/cityController');
+const router = new Router();
 
-router.get('/test', (req, res) => {
-    res.send({ msg: 'Cities test' });
-});
+// get all cities
+router.get('/cities', get.getCities);
+// get city by id
+router.get('/city/:id', get.getCity);
+// get city by query
+router.get('/city', get.getCityByQuery);
 
-router.get('/all', (req, res) => {
-    cityModel.find({})
-        .then((data) => {
-            res.send(data)
-        })
-        .catch((err) => console.log(err));
-});
-
-router.post('/', (req, res) => {
-    const newCity = new cityModel({
-        name: req.body.name,
-        country: req.body.country,
-        img: req.body.img
-    })
-    
-    const exists = newCity.findOne({ name: name.toLowerCase() });
-    if (exists) res.json({ message: 'This city already exists in database'})
-    else newCity.save()
-            .then((city) => res.send(city))
-            .catch((err) => res.status(500).send('Internal server error'));   
-});
-
+// create new city
+router.post('/', create.createCity);
 
 module.exports = router;

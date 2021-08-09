@@ -19,6 +19,7 @@ app.use(cors());
 // ROUTES
 app.use('/cities', require('./routes/cities'));
 app.use('/itineraries', require('./routes/itineraries'));
+app.use('/users', require('./routes/users'));
 
 // PORT ASSIGNATION
 app.listen(port, () => {

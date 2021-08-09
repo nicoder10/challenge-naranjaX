@@ -7,5 +7,5 @@ const getItineraryByCityId = async(id) => await Itinerary.findOne({cityId: id});
 module.exports = {
     getAll,
     count,
-    getItineraryById
+    getItineraryByCityId
 };

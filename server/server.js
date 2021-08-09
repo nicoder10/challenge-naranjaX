@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4000;
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const db = require('./keys').mongoURI; // import database credentials
@@ -17,9 +17,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 // ROUTES
-app.use('/cities', require('./routes/cities'));
-app.use('/itineraries', require('./routes/itineraries'));
-app.use('/users', require('./routes/users'));
+app.use('/api', require('./routes/cities'));
+app.use('/api', require('./routes/itineraries'));
+app.use('/api', require('./routes/users'));
 
 // PORT ASSIGNATION
 app.listen(port, () => {

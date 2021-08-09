@@ -3,21 +3,26 @@ const cityRepository = require('../../../repositories/cityRepository');
 // get all cities
 const getCities = async (req, res) => {
     try {
+        
         const citiesInDB = await cityRepository.getAll();
         const count = await cityRepository.count();
 
         if(!citiesInDB) {
             return res.status(401).json({
+                ok: false,
                 message: 'No cities in database'
             });
         }
+        const data = citiesInDB;
         res.status(200).json({
+            ok: true,
             message: 'Cities',
-            cities: citiesInDB,
+            response: data,
             total: count
         });
     } catch(e) {
         res.status(500).json({
+            ok: false,
             message: 'Internal server error',
             error: e
         });

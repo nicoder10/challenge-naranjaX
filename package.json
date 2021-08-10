@@ -4,8 +4,11 @@
   "description": "Final challenge node.js academy",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --runInBand",
     "start": "cd server && nodemon server.js"
+  },
+  "jest": {
+      "testEnvironment": "node"
   },
   "repository": {
     "type": "git",
@@ -22,6 +25,10 @@
     "concurrently": "^6.2.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "jest": "^27.0.6",
     "mongoose": "^5.13.5"
+  },
+  "devDependencies": {
+    "supertest": "^6.1.4"
   }
 }

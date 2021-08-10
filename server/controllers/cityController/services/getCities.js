@@ -7,7 +7,7 @@ const getCities = async (req, res) => {
         const data = await cityRepository.getAll();
         const count = await cityRepository.count();
 
-        if(!citiesInDB) {
+        if(!data) {
             return res.status(401).json({
                 ok: false,
                 message: 'No cities in database'

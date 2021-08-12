@@ -20,6 +20,7 @@ app.use(cors());
 app.use('/api', require('./routes/cities'));
 app.use('/api', require('./routes/itineraries'));
 app.use('/api', require('./routes/users'));
+app.use('/api', require('./routes/auth'));
 
 module.exports = {
     app,

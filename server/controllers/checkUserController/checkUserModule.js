@@ -1,9 +1,9 @@
 'use strict';
 const { response, Router } = require('express');
-const userRepository = require('../../repositories/userRepository');
+const itineraryRepository = require('../../repositories/itineraryRepository');
 
 module.exports = {
-    userRepository,
+    itineraryRepository,
     Router,
     response
 }

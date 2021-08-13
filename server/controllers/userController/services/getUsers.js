@@ -78,10 +78,65 @@ const getUserByQuery = async (req, res) => {
             error: e
         });
     }
-}
+};
+
+const getFavorites = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const userInDb = await userRepository.getUserById(id);
+  
+      if (!userInDb) {
+        return res.status(401).json({
+          ok: false,
+          message: 'User does not exist in database'
+        });
+      }
+  
+      res.status(200).json({
+        ok: true,
+        favorites: userInDb.favorites,
+      });
+  
+    } catch (e) {
+      res.status(500).json({
+        ok: false,
+        message: 'Internal server error',
+        error: e
+      });
+    }
+  };
+
+const signInls = async (req, res) => {
+    try {
+      const { _id } = req.user;
+      const userInDb = await userRepository.getUserById(_id);
+      if(!userInDb) {
+          res.status(404).json({
+              ok: false,
+              message: 'User not found in database'
+          });
+      }
+      res.status(200).json({
+        succes: true,
+        response: {
+          userPic: userInDb.userPic,
+          firstName: userInDb.firstName
+        }
+      });
+    } catch (e) {
+      res.status(500).json({
+          ok: false,
+          message: 'Internal server error',
+          error: e
+      });
+    }
+};
+  
 
 module.exports = {
     getUsers,
     getUser,
-    getUserByQuery
+    getUserByQuery,
+    getFavorites,
+    signInls
 };

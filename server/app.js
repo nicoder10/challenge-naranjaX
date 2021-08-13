@@ -4,7 +4,8 @@ const port = process.env.PORT || 4000;
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const db = require('./keys').mongoURI; // import database credentials
-const mongoose = require('mongoose'); 
+const mongoose = require('mongoose');
+const passport = require('passport'); 
 
 // DATABASE CONNECTION
 mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true})
@@ -20,7 +21,9 @@ app.use(cors());
 app.use('/api', require('./routes/cities'));
 app.use('/api', require('./routes/itineraries'));
 app.use('/api', require('./routes/users'));
-app.use('/api', require('./routes/auth'));
+app.use('/api', require('./routes/checkUser'));
+app.use('/api', require('./routes/comments'));
+app.use('/api', require('./routes/likes'));
 
 module.exports = {
     app,

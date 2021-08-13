@@ -1,10 +1,8 @@
 const { Router } = require('../controllers/itineraryController/itineraryModule');
-const { get } = require('../controllers/itineraryController/itineraryController');
+const { itineraryController } = require('../controllers/itineraryController/itineraryController');
 const router = new Router();
 
-// get all itineraries
-router.get('/itineraries', get.getItineraries);
-// get itinerary by city name
-router.get('/itinerary/:name', get.getItinerariesByCity);
+router.get('/itineraries/all', itineraryController.getItineraries);
+router.get('/itineraries/:cityId', itineraryController.getItinerariesByCityId);
 
 module.exports = router;

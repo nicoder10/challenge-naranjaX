@@ -1,7 +1,5 @@
-//const create = require('./services/createItinerary');
-const get = require('./services/getItineraries');
+const itineraryController = require('./services/getItineraries');
 
 module.exports = {
-    //create,
-    get
+    itineraryController
 };
